@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
 @import '~normalize.css/normalize';
 @import ' ~rfs/scss';
 @import './constants';
@@ -6,4 +8,140 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Rubik', sans-serif;
+}
+
+#game {
+  height: 100vh;
+  width: 100vw;
+  transform-origin: 0px 0px;
+  transform: scale(1) translate(0px, 0px);
+  background: $image-bg-color;
+}
+
+#game > img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background-color: transparent;
+  position: fixed;
+  z-index: 10;
+}
+
+.bottom-bar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: $bar-height;
+  background: $bar-bg-color;
+
+  .characters {
+    display: flex;
+    gap: $bar-spacing;
+    margin-left: $bar-spacing;
+    padding: $bar-spacing;
+    border-radius: $bar-border-radius * 2;
+    background: $bar-darker-color;
+
+    img {
+      height: $bar-content-size;
+      border-radius: $bar-border-radius;
+      background: $bar-lighter-color;
+    }
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 $bar-spacing * 2;
+    height: $bar-height/2;
+    background: $bar-darker-color;
+    border-radius: $bar-border-radius * 1.5;
+    color: $bar-font-color;
+    font-size: $bar-font-size;
+    font-weight: 500;
+  }
+
+  .info {
+    display: flex;
+    color: $bar-font-color;
+    background: $bar-darker-color;
+    gap: $bar-spacing;
+    margin-right: $bar-spacing;
+    padding: $bar-spacing;
+    border-radius: $bar-border-radius * 2;
+
+    div {
+      width: $bar-content-size;
+      border-radius: $bar-border-radius;
+      background: $bar-lighter-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .time {
+      font-size: $bar-font-size;
+      width: $bar-content-size * 2 + $bar-spacing;
+    }
+
+    svg {
+      height: $bar-icon-size;
+    }
+  }
+}
+
+.character-selector {
+  pointer-events: none;
+  visibility: hidden;
+  color: $bar-font-color;
+  position: fixed;
+  z-index: 20;
+  background: $bar-darker-color;
+  display: flex;
+  gap: $bar-spacing;
+  padding: $bar-spacing;
+  border-radius: $bar-border-radius * 2;
+  flex-direction: column;
+  div {
+    display: flex;
+    align-items: center;
+    padding-right: $bar-spacing;
+    gap: $bar-spacing;
+    border-radius: $bar-border-radius;
+    background: $bar-lighter-color;
+    img {
+      height: $bar-content-size / 1.2;
+      border-radius: $bar-border-radius;
+      background: $bar-lighter-color;
+    }
+  }
+  .circle {
+    position: fixed;
+    pointer-events: none;
+    border: 4px solid $bar-darker-color;
+    background: none;
+    border-radius: 50%;
+  }
+}
+
+.active {
+  pointer-events: all;
+  visibility: visible;
 }

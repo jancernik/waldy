@@ -1,0 +1,19 @@
+$image-bg-color: #121212;
+
+$bar-height: 5rem;
+$bar-spacing-num: 12; //%
+$bar-font-size-num: 23; //%
+$bar-icon-size: 60%;
+$bar-font-color: #ccc;
+$bar-darker-color: #202020;
+$bar-lighter-color: #404040;
+$bar-bg-color: rgba(
+  $color: #121212,
+  $alpha: 0.4,
+);
+
+//Aux
+$bar-spacing: $bar-height * ($bar-spacing-num/100);
+$bar-content-size: $bar-height - ($bar-height - $bar-spacing * 4);
+$bar-font-size: $bar-height * ($bar-font-size-num/100);
+$bar-border-radius: $bar-spacing;
