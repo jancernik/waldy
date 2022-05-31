@@ -17,7 +17,7 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
-#game {
+.game {
   height: 100vh;
   width: 100vw;
   transform-origin: 0px 0px;
@@ -25,7 +25,7 @@ body {
   background: $image-bg-color;
 }
 
-#game > img {
+.game > img {
   position: absolute;
   max-width: 100%;
   max-height: 100%;
@@ -57,11 +57,52 @@ body {
     padding: $bar-spacing;
     border-radius: $bar-border-radius * 2;
     background: $bar-darker-color;
-
     img {
+      transition: 0.6s ease-in-out;
       height: $bar-content-size;
       border-radius: $bar-border-radius;
       background: $bar-lighter-color;
+      animation-timing-function: cub  ic-bezier(0.65, 0.05, 0.36, 1);
+    }
+    .success {
+      background: $success-color;
+      animation-duration: 0.7s;
+      animation-name: success-animation;
+    }
+    .failure {
+      background: $failure-color;
+      animation-duration: 0.4s;
+      animation-name: failure-animation;
+    }
+  }
+
+  @keyframes success-animation {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY($bar-spacing/4);
+    }
+    75% {
+      transform: translateY(-$bar-spacing/4);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes failure-animation {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX($bar-spacing/4);
+    }
+    75% {
+      transform: translateX(-$bar-spacing/4);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 
@@ -110,7 +151,6 @@ body {
 .character-selector {
   pointer-events: none;
   visibility: hidden;
-  color: $bar-font-color;
   position: fixed;
   z-index: 20;
   background: $bar-darker-color;
@@ -119,17 +159,33 @@ body {
   padding: $bar-spacing;
   border-radius: $bar-border-radius * 2;
   flex-direction: column;
-  div {
+  user-select: none;
+  button {
+    cursor: pointer;
     display: flex;
     align-items: center;
     padding-right: $bar-spacing;
     gap: $bar-spacing;
     border-radius: $bar-border-radius;
+    color: $bar-font-color;
     background: $bar-lighter-color;
+    border: none;
     img {
       height: $bar-content-size / 1.2;
       border-radius: $bar-border-radius;
       background: $bar-lighter-color;
+    }
+    &:hover {
+      background-color: $hover-color;
+      img {
+        background-color: $hover-color;
+      }
+    }
+    &:active {
+      background-color: $active-color;
+      img {
+        background-color: $active-color;
+      }
     }
   }
   .circle {

@@ -71,11 +71,13 @@ export default class UI {
     }
     g.max.x = -(e.target.width * g.scale - e.target.width);
     g.max.y = -(e.target.height * g.scale - e.target.height);
-    this.applyTransform();
+    document.querySelector('.game');
   }
 
-  static applyTransform() {
-    const game = document.getElementById('game');
+  static applyTransform(useTransition) {
+    const game = document.querySelector('.game');
+    if (useTransition) game.style.transition = 'all 0.17s ease-in-out';
+    else game.style.transition = 'none';
     this.checkEdge();
     game.style.transform = `translate(${g.point.x}px, ${g.point.y}px) scale(${g.scale})`;
   }
@@ -85,5 +87,24 @@ export default class UI {
     if (g.point.x <= g.max.x) g.point.x = g.max.x;
     if (g.point.y >= 0) g.point.y = 0;
     if (g.point.y <= g.max.y) g.point.y = g.max.y;
+  }
+
+  static displayFailure(character) {
+    const imgChar = document.querySelector(`img[data-name='${character}']`);
+    imgChar.classList.add('failure');
+    setTimeout(() => {
+      imgChar.classList.remove('failure');
+    }, 800);
+  }
+
+  static displaySuccess(character) {
+    const imgChar = document.querySelector(`img[data-name='${character}']`);
+    imgChar.classList.add('success');
+    this.removeFromSelector(character);
+  }
+
+  static removeFromSelector(character) {
+    const btnChar = document.querySelector(`button[data-name='${character}']`);
+    btnChar.remove();
   }
 }

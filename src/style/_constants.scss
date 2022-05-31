@@ -11,6 +11,11 @@ $bar-bg-color: rgba(
   $color: #121212,
   $alpha: 0.4,
 );
+$hover-color: #333333;
+$active-color: #262626;
+$success-color: #00b512;
+$failure-color: #d9003a;
+
 
 //Aux
 $bar-spacing: $bar-height * ($bar-spacing-num/100);
