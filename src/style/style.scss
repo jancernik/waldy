@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
@@ -17,6 +17,127 @@ html,
 body {
   height: 100%;
   font-family: 'Rubik', sans-serif;
+}
+
+.games {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+  .logo-wrapper {
+    min-height: calc(103px + 1rem);
+  }
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-inline: 1rem;
+    width: fit-content;
+    min-height: 100%;
+    svg {
+      height: 100%;
+      background: #fff;
+      z-index: 20;
+      flex: 1 1 0;
+      transform: translateX(55%);
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 50;
+    }
+    &::before {
+      content: '';
+      top: 0;
+      left: 0;
+      position: absolute;
+      height: 100%;
+      width: 40%;
+      background: #fff;
+      z-index: 10;
+    }
+    h1 {
+      flex: 1.1 1 0;
+      transform: translate(-70%, -15%);
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      color: #555;
+      white-space: nowrap;
+    }
+    &:hover {
+      svg {
+        transform: translateX(-0.6rem);
+      }
+      h1 {
+        transform: translate(0.6rem, -15%);
+      }
+    }
+  }
+  .cards-container {
+    background-color: #eee;
+    border-radius: $bar-border-radius;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    .game-card {
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border-radius: $bar-border-radius;
+      box-shadow: 0 0.2rem 0.8rem 0.2rem rgba($color: #000000, $alpha: 0.2);
+      img {
+        max-width: 100%;
+        display: block;
+        transform: scale(1.07);
+        filter: blur(3px);
+        transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 0.1s ease-out;
+        object-fit: cover;
+        width: 100%;
+      }
+      .text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: $card-bg-color;
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 1rem;
+        font-size: $card-font-size;
+        color: $card-font-sec-color;
+        font-weight: 500;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        transition: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        span:first-child {
+          position: absolute;
+          left: 0;
+          transform: translateX(-40%);
+          font-size: 18rem;
+          opacity: 0.8;
+          transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .title {
+          color: $card-font-pri-color;
+        }
+      }
+      &:hover {
+        img {
+          transform: scale(1);
+          filter: blur(0px);
+        }
+        .text {
+          background: $card-bg-hover-color;
+          height: $card-font-size + $card-inline-padding * 2;
+        }
+        span:first-child {
+          opacity: 0;
+        }
+      }
+    }
+  }
 }
 
 .game {
@@ -64,7 +185,7 @@ body {
       height: $bar-content-size;
       border-radius: $bar-border-radius;
       background: $bar-lighter-color;
-      animation-timing-function: cub  ic-bezier(0.65, 0.05, 0.36, 1);
+      animation-timing-function: cub ic-bezier(0.65, 0.05, 0.36, 1);
     }
     .success {
       background: $success-color;
@@ -83,10 +204,10 @@ body {
       transform: translateY(0);
     }
     25% {
-      transform: translateY($bar-spacing*0.25);
+      transform: translateY($bar-spacing * 0.25);
     }
     75% {
-      transform: translateY(-$bar-spacing*0.25);
+      transform: translateY(-$bar-spacing * 0.25);
     }
     100% {
       transform: translateY(0);
@@ -98,10 +219,10 @@ body {
       transform: translateX(0);
     }
     25% {
-      transform: translateX($bar-spacing*0.25);
+      transform: translateX($bar-spacing * 0.25);
     }
     75% {
-      transform: translateX(-$bar-spacing*0.25);
+      transform: translateX(-$bar-spacing * 0.25);
     }
     100% {
       transform: translateX(0);
@@ -113,7 +234,7 @@ body {
     align-items: center;
     margin: 0 auto;
     padding: 0 $bar-spacing * 2;
-    height: $bar-height*0.5;
+    height: $bar-height * 0.5;
     background: $bar-darker-color;
     border-radius: $bar-border-radius * 1.5;
     color: $bar-font-color;
@@ -202,4 +323,31 @@ body {
 .active {
   pointer-events: all;
   visibility: visible;
+}
+
+.main {
+  display: none;
+}
+
+.bottom-bar {
+  display: none;
+}
+
+@media (max-width: 1050px) {
+  .games {
+    padding: 1rem;
+    gap: 1rem;
+    .cards-container {
+      flex-direction: column;
+      max-width: calc(400px - 3rem);
+      padding: 1rem;
+      gap: 1rem;
+      .game-card {
+        max-width: calc(400px - 2rem);
+        img {
+          max-width: calc(400px - 1rem);
+        }
+      }
+    }
+  }
 }

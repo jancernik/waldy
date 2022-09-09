@@ -16,9 +16,21 @@ $active-color: #262626;
 $success-color: #00b512;
 $failure-color: #d9003a;
 
+$card-font-size: 1.4rem;
+$card-inline-padding: 0.6rem;
+$card-font-pri-color: #ccc;
+$card-font-sec-color: #aaa;
+$card-bg-color: rgba(
+  $color: #121212,
+  $alpha: 0.4,
+);
+$card-bg-hover-color: rgba(
+  $color: #121212,
+  $alpha: 0.6,
+);
 
 //Aux
-$bar-spacing: $bar-height * ($bar-spacing-num*0.01);
+$bar-spacing: $bar-height * ($bar-spacing-num * 0.01);
 $bar-content-size: $bar-height - ($bar-height - $bar-spacing * 4);
-$bar-font-size: $bar-height * ($bar-font-size-num*0.01);
+$bar-font-size: $bar-height * ($bar-font-size-num * 0.01);
 $bar-border-radius: $bar-spacing;
