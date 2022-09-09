@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import g from './app/global';
 
-
 const firebaseConfig = {
   apiKey: 'AIzaSyDI1hvWgguSoNQkxybXrSNAg3BfQEUmkqQ',
   authDomain: 'waldy-361d1.firebaseapp.com',
@@ -15,7 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function getAnswers() {
+export default async function getAnswers() {
   const answers = await getDocs(collection(db, 'correct-answers'));
   const answersList = answers.docs.map((doc) => doc.data());
   g.answers = answersList;
