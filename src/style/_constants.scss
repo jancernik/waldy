@@ -18,7 +18,7 @@ $failure-color: #d9003a;
 
 
 //Aux
-$bar-spacing: $bar-height * ($bar-spacing-num/100);
+$bar-spacing: $bar-height * ($bar-spacing-num*0.01);
 $bar-content-size: $bar-height - ($bar-height - $bar-spacing * 4);
-$bar-font-size: $bar-height * ($bar-font-size-num/100);
+$bar-font-size: $bar-height * ($bar-font-size-num*0.01);
 $bar-border-radius: $bar-spacing;

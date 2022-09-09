@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 
 @import '~normalize.css/normalize';
@@ -81,10 +83,10 @@ body {
       transform: translateY(0);
     }
     25% {
-      transform: translateY($bar-spacing/4);
+      transform: translateY($bar-spacing*0.25);
     }
     75% {
-      transform: translateY(-$bar-spacing/4);
+      transform: translateY(-$bar-spacing*0.25);
     }
     100% {
       transform: translateY(0);
@@ -96,10 +98,10 @@ body {
       transform: translateX(0);
     }
     25% {
-      transform: translateX($bar-spacing/4);
+      transform: translateX($bar-spacing*0.25);
     }
     75% {
-      transform: translateX(-$bar-spacing/4);
+      transform: translateX(-$bar-spacing*0.25);
     }
     100% {
       transform: translateX(0);
@@ -111,7 +113,7 @@ body {
     align-items: center;
     margin: 0 auto;
     padding: 0 $bar-spacing * 2;
-    height: $bar-height/2;
+    height: $bar-height*0.5;
     background: $bar-darker-color;
     border-radius: $bar-border-radius * 1.5;
     color: $bar-font-color;
@@ -171,7 +173,7 @@ body {
     background: $bar-lighter-color;
     border: none;
     img {
-      height: $bar-content-size / 1.2;
+      height: math.div($bar-content-size, 1.2);
       border-radius: $bar-border-radius;
       background: $bar-lighter-color;
     }
