@@ -28,19 +28,19 @@ body {
   gap: 2rem;
   height: 100%;
   .logo-wrapper {
-    min-height: calc(103px + 1rem);
+    min-height: calc(103px + 2rem);
   }
   .logo {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-inline: 1rem;
+    padding-inline: 2rem;
     width: fit-content;
     min-height: 100%;
     svg {
       height: 100%;
-      background: #fff;
+      background: #eee;
       z-index: 20;
       flex: 1 1 0;
       transform: translateX(55%);
@@ -54,22 +54,37 @@ body {
       position: absolute;
       height: 100%;
       width: 40%;
-      background: #fff;
-      z-index: 10;
+      background: #eee;
+      z-index: 20;
+    border-radius: $bar-border-radius;
+
     }
+    &::after {
+      content: '';
+      top: 0;
+      left: 50%;
+      transform: translate(-50%);
+      position: absolute;
+      height: 100%;
+      width: calc(100% );
+      background: #eee;
+      z-index: 10;
+    border-radius: $bar-border-radius;
+  }
     h1 {
       flex: 1.1 1 0;
-      transform: translate(-70%, -15%);
+      transform: translate(-70%, -8%);
       transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
       color: #555;
       white-space: nowrap;
+      z-index: 15;
     }
     &:hover {
       svg {
         transform: translateX(-0.6rem);
       }
       h1 {
-        transform: translate(0.6rem, -15%);
+        transform: translate(0.6rem, -8%);
       }
     }
   }
