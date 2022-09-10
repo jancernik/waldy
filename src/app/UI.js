@@ -4,14 +4,20 @@ export default class UI {
   static displayGame(id) {
     const game = document.querySelector(`.game[data-game-id="${id}"]`);
     game.classList.remove('hidden');
-    document.querySelector('.bottom-bar').classList.remove('hidden');
+    document.querySelector('.top-bar').classList.remove('hidden');
     document.querySelector('.main').classList.remove('hidden');
     document.querySelector('.games').classList.add('hidden');
+    // const title = document.querySelector('.game-title');
     if (id === '1') {
+      // title.innerText = 'Medieval traffic jam';
       this.removeFromSelector('wenda');
       this.removeFromBar('wenda');
     }
+    if (id === '2') {
+      // title.innerText = 'Work day at the moon';
+    }
     if (id === '3') {
+      // title.innerText = 'Stone age shenanigans';
       this.removeFromSelector('odlaw');
       this.removeFromBar('odlaw');
       this.removeFromSelector('wizard');
@@ -23,7 +29,7 @@ export default class UI {
     document.querySelectorAll('.game').forEach((el) => {
       el.classList.add('hidden');
     });
-    document.querySelector('.bottom-bar').classList.add('hidden');
+    document.querySelector('.top-bar').classList.add('hidden');
     document.querySelector('.main').classList.add('hidden');
     document.querySelector('.games').classList.remove('hidden');
     document.querySelectorAll('button[data-name]').forEach((el) => {
@@ -56,7 +62,7 @@ export default class UI {
 
   static setSelectorPos(x, y) {
     const selector = document.querySelector('.character-selector');
-    const barHeight = document.querySelector('.bottom-bar').offsetHeight;
+    const barHeight = document.querySelector('.top-bar').offsetHeight;
     const selectorHeight = selector.offsetHeight;
     const centerX = x - selector.offsetWidth / 2;
     const vOffset = 30;

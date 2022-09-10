@@ -73,7 +73,6 @@ export default class BindEvent {
       .querySelectorAll('.character-selector button')
       .forEach((element) => {
         element.addEventListener('click', (e) => {
-          console.log(e.target);
           App.checkGuess(e.target.dataset.name);
           UI.hideSelector();
           UI.removeCircle();

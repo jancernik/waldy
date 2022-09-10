@@ -1,22 +1,22 @@
 $image-bg-color: #121212;
 
-$bar-height: 5rem;
+$bar-height: 5.5rem;
 $bar-spacing-num: 12; //%
 $bar-font-size-num: 23; //%
-$bar-icon-size: 60%;
+$bar-icon-size: 1.3rem;
 $bar-font-color: #ccc;
 $bar-darker-color: #202020;
 $bar-lighter-color: #404040;
 $bar-bg-color: rgba(
-  $color: #121212,
-  $alpha: 0.4,
+  $color: #000,
+  $alpha: 0.3,
 );
 $hover-color: #333333;
 $active-color: #262626;
-$success-color: #00b512;
-$failure-color: #d9003a;
+$success-color: #5ead21;
+$failure-color: #ad2121;
 
-$card-font-size: 1.4rem;
+$card-font-size: 1.2rem;
 $card-inline-padding: 0.6rem;
 $card-font-pri-color: #ccc;
 $card-font-sec-color: #aaa;
@@ -28,9 +28,10 @@ $card-bg-hover-color: rgba(
   $color: #121212,
   $alpha: 0.6,
 );
+$top-bar-shadow: 0 0 0.4rem 0.2rem rgba($color: #000000, $alpha: 0.3   );
 
 //Aux
 $bar-spacing: $bar-height * ($bar-spacing-num * 0.01);
 $bar-content-size: $bar-height - ($bar-height - $bar-spacing * 4);
 $bar-font-size: $bar-height * ($bar-font-size-num * 0.01);
-$bar-border-radius: $bar-spacing;
+$bar-border-radius: $bar-spacing * 0.5;
