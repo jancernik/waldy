@@ -3,8 +3,8 @@ import UI from './UI';
 
 export default class App {
   static checkGuess(character) {
-    const game = document.querySelector('.game');
-    const targetGameID = parseInt(game.getAttribute('data-game-ID'), 10);
+    const game = document.querySelector('.game:not(.hidden)');
+    const targetGameID = parseInt(game.getAttribute('data-game-id'), 10);
     const answer = g.answers.filter((e) => e.gameID === targetGameID)[0];
     if (
       g.guess.x >= answer[`${character}MinX`] &&

@@ -340,12 +340,8 @@ body {
   visibility: visible;
 }
 
-.main {
-  display: none;
-}
-
-.bottom-bar {
-  display: none;
+.hidden {
+  display: none !important;
 }
 
 @media (max-width: 1050px) {

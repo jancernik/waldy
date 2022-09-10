@@ -1,6 +1,39 @@
 import g from './global';
 
 export default class UI {
+  static displayGame(id) {
+    const game = document.querySelector(`.game[data-game-id="${id}"]`);
+    game.classList.remove('hidden');
+    document.querySelector('.bottom-bar').classList.remove('hidden');
+    document.querySelector('.main').classList.remove('hidden');
+    document.querySelector('.games').classList.add('hidden');
+    if (id === '1') {
+      this.removeFromSelector('wenda');
+      this.removeFromBar('wenda');
+    }
+    if (id === '3') {
+      this.removeFromSelector('odlaw');
+      this.removeFromBar('odlaw');
+      this.removeFromSelector('wizard');
+      this.removeFromBar('wizard');
+    }
+  }
+
+  static displayLevels() {
+    document.querySelectorAll('.game').forEach((el) => {
+      el.classList.add('hidden');
+    });
+    document.querySelector('.bottom-bar').classList.add('hidden');
+    document.querySelector('.main').classList.add('hidden');
+    document.querySelector('.games').classList.remove('hidden');
+    document.querySelectorAll('button[data-name]').forEach((el) => {
+      el.classList.remove('hidden');
+    });
+    document.querySelectorAll('img[data-name]').forEach((el) => {
+      el.classList.remove('hidden');
+    });
+  }
+
   static characterSelector(x, y) {
     const selector = document.querySelector('.character-selector');
     if (!selector.classList.contains('active')) {
@@ -71,11 +104,10 @@ export default class UI {
     }
     g.max.x = -(e.target.width * g.scale - e.target.width);
     g.max.y = -(e.target.height * g.scale - e.target.height);
-    document.querySelector('.game');
   }
 
   static applyTransform(useTransition) {
-    const game = document.querySelector('.game');
+    const game = document.querySelector('.game:not(.hidden)');
     if (useTransition) game.style.transition = 'all 0.17s ease-in-out';
     else game.style.transition = 'none';
     this.checkEdge();
@@ -105,6 +137,11 @@ export default class UI {
 
   static removeFromSelector(character) {
     const btnChar = document.querySelector(`button[data-name='${character}']`);
-    btnChar.remove();
+    btnChar.classList.add('hidden');
+  }
+
+  static removeFromBar(character) {
+    const img = document.querySelector(`img[data-name='${character}']`);
+    img.classList.add('hidden');
   }
 }
