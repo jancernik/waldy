@@ -108,16 +108,16 @@ export default class UI {
       g.point.x = 0;
       g.point.y = 0;
     }
-    g.max.x = -(e.target.width * g.scale - e.target.width);
-    g.max.y = -(e.target.height * g.scale - e.target.height);
+    // g.max.x = -(e.target.width * g.scale - e.target.width);
+    // g.max.y = -(e.target.height * g.scale - e.target.height);
   }
 
   static applyTransform(useTransition) {
     const game = document.querySelector('.game:not(.hidden)');
     if (useTransition) game.style.transition = 'all 0.17s ease-in-out';
     else game.style.transition = 'none';
-    this.checkEdge();
     game.style.transform = `translate(${g.point.x}px, ${g.point.y}px) scale(${g.scale})`;
+    // this.checkEdge();
   }
 
   static checkEdge() {

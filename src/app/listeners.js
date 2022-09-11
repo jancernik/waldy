@@ -37,6 +37,7 @@ export default class BindEvent {
       });
 
       game.addEventListener('mousedown', (e) => {
+        if (e.target === e.currentTarget) return;
         e.preventDefault();
         document.body.style.cursor = 'grabbing';
         g.start = { x: e.clientX - g.point.x, y: e.clientY - g.point.y };
@@ -59,6 +60,7 @@ export default class BindEvent {
     const games = document.querySelectorAll('.game');
     games.forEach((game) => {
       game.addEventListener('wheel', (e) => {
+        if (e.target === e.currentTarget) return;
         e.preventDefault();
         UI.setZoom(e);
         UI.applyTransform(true);
