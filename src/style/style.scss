@@ -23,6 +23,12 @@ body {
 }
 
 .games {
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #fff;
   padding: 2rem;
   display: flex;
@@ -182,6 +188,27 @@ body {
   z-index: 10;
 }
 
+.end-timer {
+  font-family: 'Azeret Mono', monospace;
+}
+
+.end-card {
+  color: $bar-font-color;
+  font-size: 1.7rem;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .score {
+    display: flex;
+    font-size: 1.4rem;
+  }
+}
+
 .top-bar {
   position: fixed;
   width: 100%;
@@ -192,7 +219,20 @@ body {
   justify-content: space-between;
   overflow: visible;
   background: $card-bg-hover-color;
-  // backdrop-filter: blur(5px);
+  height: $bar-content-size + $bar-spacing * 2;
+  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(0px);
+  > div {
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+  }
+  &.end {
+    backdrop-filter: blur(5px);
+    height: 100%;
+    > div {
+      opacity: 0;
+    }
+  }
   .characters {
     display: flex;
     gap: $bar-spacing;
@@ -316,7 +356,8 @@ body {
       width: $bar-icon-size;
       position: relative;
       transition: 0.1s ease-in-out;
-      &::before, &::after {
+      &::before,
+      &::after {
         content: '';
         position: absolute;
         width: 50%;
@@ -329,12 +370,12 @@ body {
         top: calc(50% + 1px);
         transform-origin: top left;
         transform: translate(-50%, -50%) rotate(-50deg);
-      };
+      }
       &::after {
         top: calc(50% - 1px);
         transform-origin: bottom left;
         transform: translate(-50%, -50%) rotate(50deg);
-      };
+      }
     }
     .levels {
       display: flex;

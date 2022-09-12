@@ -1,8 +1,11 @@
+/* eslint-disable operator-linebreak */
+import { getDatabase, ref, onValue } from 'firebase/database';
 import g from './global';
 import UI from './UI';
 
-let timer = null;
+let localTimer = null;
 let totalSeconds = 0;
+let correctGuesses = 0;
 
 export default class App {
   static checkGuess(character) {
@@ -15,31 +18,54 @@ export default class App {
       g.guess.y >= answer[`${character}MinY`] &&
       g.guess.y <= answer[`${character}MaxY`]
     ) {
+      correctGuesses += 1;
+      this.checkEnd(answer);
       UI.displaySuccess(character);
     } else {
       UI.displayFailure(character);
     }
   }
 
-  static updateTimer() {
+  static checkEnd(answer) {
+    const characterNum = (Object.keys(answer).length - 1) / 4;
+    if (correctGuesses === characterNum) {
+      this.getServerTime(false);
+      this.stopLocalTimer();
+      UI.displayEnd();
+      const checkScoreTime = setInterval(() => {
+        if (g.scoreTime) {
+          const minutes = Math.floor(g.scoreTime / 60000);
+          const seconds = g.scoreTime / 1000 - minutes * 60;
+          UI.displayTimer(minutes, seconds, '.end-timer');
+          clearInterval(checkScoreTime);
+        }
+      }, 20);
+    }
+  }
+
+  static updateLocalTimer() {
     totalSeconds += 1;
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds - minutes * 60;
-    UI.displayTimer(minutes, seconds);
+    UI.displayTimer(minutes, seconds, '.timer');
   }
 
-  static getTimer() {
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds - minutes * 60;
-    return { minutes, seconds };
+  static getServerTime(isStartTime) {
+    const offsetRef = ref(getDatabase(), '.info/serverTimeOffset');
+    onValue(offsetRef, (snap) => {
+      const offset = snap.val();
+      const currentTime = new Date().getTime() + offset;
+      if (isStartTime) g.startTime = currentTime;
+      else g.scoreTime = currentTime - g.startTime;
+    });
   }
 
-  static startTimer() {
-    timer = setInterval(this.updateTimer, 1000);
-  }
-
-  static stopTimer() {
-    clearInterval(timer);
+  static startLocalTimer() {
     totalSeconds = 0;
+    localTimer = setInterval(this.updateLocalTimer, 1000);
+  }
+
+  static stopLocalTimer() {
+    clearInterval(localTimer);
   }
 }

@@ -7,13 +7,20 @@ export default class BindEvent {
     document.querySelectorAll('.game-card').forEach((el) => {
       el.addEventListener('click', (e) => {
         const id = e.currentTarget.getAttribute('data-game-id');
-        UI.displayGame(id);
-        App.startTimer();
+        UI.prepareGame(id);
+        App.getServerTime(true);
+        const checkStartTime = setInterval(() => {
+          if (g.startTime) {
+            UI.displayGame();
+            App.startLocalTimer();
+            clearInterval(checkStartTime);
+          }
+        }, 50);
       });
     });
 
     document.querySelector('.levels').addEventListener('click', () => {
-      App.stopTimer();
+      App.stopLocalTimer();
       UI.displayLevels();
       UI.resetTimer();
     });

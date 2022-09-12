@@ -1,12 +1,11 @@
 import g from './global';
 
 export default class UI {
-  static displayGame(id) {
+  static prepareGame(id) {
     const game = document.querySelector(`.game[data-game-id="${id}"]`);
     game.classList.remove('hidden');
     document.querySelector('.top-bar').classList.remove('hidden');
     document.querySelector('.main').classList.remove('hidden');
-    document.querySelector('.games').classList.add('hidden');
     // const title = document.querySelector('.game-title');
     if (id === '1') {
       // title.innerText = 'Medieval traffic jam';
@@ -25,6 +24,10 @@ export default class UI {
     }
   }
 
+  static displayGame() {
+    document.querySelector('.games').classList.add('hidden');
+  }
+
   static displayLevels() {
     document.querySelectorAll('.game').forEach((el) => {
       el.classList.add('hidden');
@@ -32,6 +35,8 @@ export default class UI {
     document.querySelector('.top-bar').classList.add('hidden');
     document.querySelector('.main').classList.add('hidden');
     document.querySelector('.games').classList.remove('hidden');
+    document.querySelector('.end-card').classList.add('hidden');
+    document.querySelector('.top-bar').classList.remove('end');
     document.querySelectorAll('button[data-name]').forEach((el) => {
       el.classList.remove('hidden');
     });
@@ -44,11 +49,11 @@ export default class UI {
   static characterSelector(x, y) {
     const selector = document.querySelector('.character-selector');
     if (!selector.classList.contains('active')) {
-      this.drawCircle(x, y, selector);
+      // this.drawCircle(x, y, selector);
       this.setSelectorPos(x, y);
       this.showSelector();
     } else {
-      this.removeCircle();
+      // this.removeCircle();
       this.hideSelector();
     }
   }
@@ -128,10 +133,10 @@ export default class UI {
     if (g.point.y <= g.max.y) g.point.y = g.max.y;
   }
 
-  static displayTimer(minutes, seconds) {
+  static displayTimer(minutes, seconds, selector) {
     const min = minutes < 10 ? `0${minutes}` : minutes;
     const sec = seconds < 10 ? `0${seconds}` : seconds;
-    document.querySelector('.timer').innerText = `${min}:${sec}`;
+    document.querySelector(selector).innerText = `${min}:${sec}`;
   }
 
   static resetTimer() {
@@ -150,6 +155,13 @@ export default class UI {
     const imgChar = document.querySelector(`img[data-name='${character}']`);
     imgChar.classList.add('success');
     this.removeFromSelector(character);
+  }
+
+  static displayEnd() {
+    document.querySelector('.top-bar').classList.add('end');
+    setTimeout(() => {
+      document.querySelector('.end-card').classList.remove('hidden');
+    }, 1000);
   }
 
   static removeFromSelector(character) {
