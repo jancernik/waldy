@@ -20,7 +20,11 @@ export default class BindEvent {
     });
 
     document.querySelector('.levels').addEventListener('click', () => {
+      g.scale = 1;
+      g.point.x = 0;
+      g.point.y = 0;
       App.stopLocalTimer();
+      UI.applyTransform(false);
       UI.displayLevels();
       UI.resetTimer();
     });
@@ -71,6 +75,7 @@ export default class BindEvent {
     games.forEach((game) => {
       game.addEventListener('wheel', (e) => {
         if (e.target === e.currentTarget) return;
+        g.isMouseDown = false;
         e.preventDefault();
         UI.setZoom(e);
         UI.applyTransform(true);
