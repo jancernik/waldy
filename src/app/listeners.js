@@ -8,11 +8,14 @@ export default class BindEvent {
       el.addEventListener('click', (e) => {
         const id = e.currentTarget.getAttribute('data-game-id');
         UI.displayGame(id);
+        App.startTimer();
       });
     });
 
     document.querySelector('.levels').addEventListener('click', () => {
+      App.stopTimer();
       UI.displayLevels();
+      UI.resetTimer();
     });
 
     const games = document.querySelectorAll('.game');

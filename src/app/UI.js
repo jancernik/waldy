@@ -37,6 +37,7 @@ export default class UI {
     });
     document.querySelectorAll('img[data-name]').forEach((el) => {
       el.classList.remove('hidden');
+      el.classList.remove('success');
     });
   }
 
@@ -125,6 +126,16 @@ export default class UI {
     if (g.point.x <= g.max.x) g.point.x = g.max.x;
     if (g.point.y >= 0) g.point.y = 0;
     if (g.point.y <= g.max.y) g.point.y = g.max.y;
+  }
+
+  static displayTimer(minutes, seconds) {
+    const min = minutes < 10 ? `0${minutes}` : minutes;
+    const sec = seconds < 10 ? `0${seconds}` : seconds;
+    document.querySelector('.timer').innerText = `${min}:${sec}`;
+  }
+
+  static resetTimer() {
+    document.querySelector('.timer').innerText = '00:00';
   }
 
   static displayFailure(character) {

@@ -1,6 +1,8 @@
 @use 'sass:math';
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@1,500&display=swap');
 
 @import '~normalize.css/normalize';
 @import ' ~rfs/scss';
@@ -262,7 +264,7 @@ body {
   //   font-weight: 500;
   // }
 
-  .time {
+  .timer {
     color: $bar-font-color;
     // width: $bar-content-size * 3 + $bar-spacing * 2;
     height: $bar-content-size;
@@ -276,9 +278,11 @@ body {
     justify-content: center;
     align-items: center;
     padding-inline: $bar-spacing;
+    // min-width: 76px;
     font-size: $bar-font-size;
     // width: $bar-content-size * 2 + $bar-spacing;
     box-shadow: $top-bar-shadow;
+    font-family: 'Azeret Mono', monospace;
   }
 
   .info {
@@ -302,31 +306,54 @@ body {
       box-shadow: $top-bar-shadow;
     }
 
-    .time {
+    .timer {
       font-size: $bar-font-size;
       width: $bar-content-size * 2 + $bar-spacing;
       font-weight: 500;
     }
-    svg {
+    .arrow {
       height: $bar-icon-size;
       width: $bar-icon-size;
+      position: relative;
+      transition: 0.1s ease-in-out;
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        background-color: $bar-font-color;
+      }
+      &::before {
+        top: calc(50% + 1px);
+        transform-origin: top left;
+        transform: translate(-50%, -50%) rotate(-50deg);
+      };
+      &::after {
+        top: calc(50% - 1px);
+        transform-origin: bottom left;
+        transform: translate(-50%, -50%) rotate(50deg);
+      };
     }
     .levels {
       display: flex;
       justify-content: center;
-      gap: $bar-spacing * 0.3;
-      font-weight: 400;
+      font-weight: 500;
       cursor: pointer;
       span {
         display: flex;
         align-items: center;
-        font-size: 0.7 * $bar-font-size;
-        line-height: 0.7 * $bar-font-size;
-        height: 0.7 * $bar-font-size;
+        font-size: 0.8 * $bar-font-size;
+        line-height: 0.8 * $bar-font-size;
+        height: 0.8 * $bar-font-size;
         padding-top: 0.1 * $bar-font-size;
       }
       &:hover {
         background: $hover-color;
+        .arrow {
+          transform: scale(1.2);
+        }
       }
     }
   }

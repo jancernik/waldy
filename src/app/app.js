@@ -1,6 +1,9 @@
 import g from './global';
 import UI from './UI';
 
+let timer = null;
+let totalSeconds = 0;
+
 export default class App {
   static checkGuess(character) {
     const game = document.querySelector('.game:not(.hidden)');
@@ -16,5 +19,27 @@ export default class App {
     } else {
       UI.displayFailure(character);
     }
+  }
+
+  static updateTimer() {
+    totalSeconds += 1;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds - minutes * 60;
+    UI.displayTimer(minutes, seconds);
+  }
+
+  static getTimer() {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds - minutes * 60;
+    return { minutes, seconds };
+  }
+
+  static startTimer() {
+    timer = setInterval(this.updateTimer, 1000);
+  }
+
+  static stopTimer() {
+    clearInterval(timer);
+    totalSeconds = 0;
   }
 }
