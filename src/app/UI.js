@@ -19,7 +19,11 @@ export default class UI {
   }
 
   static displayGame() {
-    document.querySelector('.games').classList.add('hidden');
+    const games = document.querySelector('.games');
+    games.style.transform = 'translateY(100%)';
+    // setTimeout(() => {
+    //   games.classList.add('hidden');
+    // }, 1000);
   }
 
   static redisplayGame(id) {
@@ -46,21 +50,26 @@ export default class UI {
   }
 
   static displayLevels() {
-    document.querySelectorAll('.game').forEach((el) => {
-      el.classList.add('hidden');
-    });
-    document.querySelector('.top-bar').classList.add('hidden');
-    document.querySelector('.main').classList.add('hidden');
-    document.querySelector('.games').classList.remove('hidden');
-    document.querySelector('.end-card').classList.add('hidden');
-    document.querySelector('.top-bar').classList.remove('end');
-    document.querySelectorAll('button[data-name]').forEach((el) => {
-      el.classList.remove('hidden');
-    });
-    document.querySelectorAll('img[data-name]').forEach((el) => {
-      el.classList.remove('hidden');
-      el.classList.remove('success');
-    });
+    // document.querySelector('.games').classList.remove('hidden');
+    g.transitionEnded = false;
+    document.querySelector('.games').style.transform = 'translateY(0)';
+    setTimeout(() => {
+      document.querySelector('.top-bar').classList.add('hidden');
+      document.querySelector('.main').classList.add('hidden');
+      document.querySelector('.end-card').classList.add('hidden');
+      document.querySelector('.top-bar').classList.remove('end');
+      document.querySelectorAll('button[data-name]').forEach((el) => {
+        el.classList.remove('hidden');
+      });
+      document.querySelectorAll('img[data-name]').forEach((el) => {
+        el.classList.remove('hidden');
+        el.classList.remove('success');
+      });
+      document.querySelectorAll('.game').forEach((el) => {
+        el.classList.add('hidden');
+      });
+      g.transitionEnded = true;
+    }, 800);
   }
 
   static characterSelector(x, y) {
@@ -151,9 +160,16 @@ export default class UI {
   }
 
   static displayTimer(minutes, seconds, selector) {
-    const min = minutes < 10 ? `0${minutes}` : minutes;
-    const sec = seconds < 10 ? `0${seconds}` : seconds;
-    document.querySelector(selector).innerText = `${min}:${sec}`;
+    if (selector === '.timer') {
+      const min = minutes < 10 ? `0${minutes}` : minutes;
+      const sec = seconds < 10 ? `0${seconds}` : seconds;
+      document.querySelector(selector).innerText = `${min}:${sec}`;
+    } else if (selector === '.end-timer') {
+      let min = '';
+      if (minutes === 1) min = '1 minute and ';
+      if (min > 1) min = `${minutes} minutes and `;
+      document.querySelector(selector).innerText = `${min}${seconds} seconds`;
+    }
   }
 
   static resetTimer() {
@@ -176,9 +192,12 @@ export default class UI {
 
   static displayEnd() {
     document.querySelector('.top-bar').classList.add('end');
+    const endCard = document.querySelector('.end-card');
+    endCard.style.opacity = '0';
+    endCard.classList.remove('hidden');
     setTimeout(() => {
-      document.querySelector('.end-card').classList.remove('hidden');
-    }, 1000);
+      endCard.style.opacity = '1';
+    }, 800);
   }
 
   static removeFromSelector(character) {

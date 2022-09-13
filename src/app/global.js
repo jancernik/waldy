@@ -9,4 +9,5 @@ export default {
   answers: {},
   startTime: 0,
   scoreTime: 0,
+  transitionEnded: true,
 };

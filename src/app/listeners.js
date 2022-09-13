@@ -6,6 +6,7 @@ export default class BindEvent {
   static click() {
     document.querySelectorAll('.game-card').forEach((el) => {
       el.addEventListener('click', (e) => {
+        if (!g.transitionEnded) return;
         const id = e.currentTarget.getAttribute('data-game-id');
         UI.prepareGame(id);
         App.getServerTime(true);
@@ -40,10 +41,12 @@ export default class BindEvent {
         g.point.y = 0;
         App.resetVals();
         App.stopLocalTimer();
-        UI.applyTransform(false);
         UI.displayLevels();
-        UI.resetTimer();
-        UI.hideSelector();
+        setTimeout(() => {
+          UI.applyTransform(false);
+          UI.resetTimer();
+          UI.hideSelector();
+        }, 400);
       });
     });
 
