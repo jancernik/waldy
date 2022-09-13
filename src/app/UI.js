@@ -167,7 +167,7 @@ export default class UI {
     } else if (selector === '.end-timer') {
       let min = '';
       if (minutes === 1) min = '1 minute and ';
-      if (min > 1) min = `${minutes} minutes and `;
+      if (minutes > 1) min = `${minutes} minutes and `;
       document.querySelector(selector).innerText = `${min}${seconds} seconds`;
     }
   }
