@@ -36,7 +36,8 @@ export default class App {
         if (g.scoreTime) {
           const minutes = Math.floor(g.scoreTime / 60000);
           const seconds = g.scoreTime / 1000 - minutes * 60;
-          UI.displayTimer(minutes, seconds, '.end-timer');
+          const secondsRound = Math.round(seconds * 100) / 100;
+          UI.displayTimer(minutes, secondsRound, '.end-timer');
           clearInterval(checkScoreTime);
         }
       }, 20);
@@ -67,5 +68,11 @@ export default class App {
 
   static stopLocalTimer() {
     clearInterval(localTimer);
+  }
+
+  static resetVals() {
+    g.startTime = 0;
+    g.scoreTime = 0;
+    correctGuesses = 0;
   }
 }

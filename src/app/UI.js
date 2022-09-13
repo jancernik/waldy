@@ -6,17 +6,11 @@ export default class UI {
     game.classList.remove('hidden');
     document.querySelector('.top-bar').classList.remove('hidden');
     document.querySelector('.main').classList.remove('hidden');
-    // const title = document.querySelector('.game-title');
     if (id === '1') {
-      // title.innerText = 'Medieval traffic jam';
       this.removeFromSelector('wenda');
       this.removeFromBar('wenda');
     }
-    if (id === '2') {
-      // title.innerText = 'Work day at the moon';
-    }
     if (id === '3') {
-      // title.innerText = 'Stone age shenanigans';
       this.removeFromSelector('odlaw');
       this.removeFromBar('odlaw');
       this.removeFromSelector('wizard');
@@ -26,6 +20,29 @@ export default class UI {
 
   static displayGame() {
     document.querySelector('.games').classList.add('hidden');
+  }
+
+  static redisplayGame(id) {
+    this.resetTimer();
+    document.querySelectorAll('button[data-name]').forEach((el) => {
+      el.classList.remove('hidden');
+    });
+    document.querySelectorAll('img[data-name]').forEach((el) => {
+      el.classList.remove('hidden');
+      el.classList.remove('success');
+    });
+    if (id === 1) {
+      this.removeFromSelector('wenda');
+      this.removeFromBar('wenda');
+    }
+    if (id === 3) {
+      this.removeFromSelector('odlaw');
+      this.removeFromBar('odlaw');
+      this.removeFromSelector('wizard');
+      this.removeFromBar('wizard');
+    }
+    document.querySelector('.end-card').classList.add('hidden');
+    document.querySelector('.top-bar').classList.remove('end');
   }
 
   static displayLevels() {

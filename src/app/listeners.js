@@ -19,14 +19,32 @@ export default class BindEvent {
       });
     });
 
-    document.querySelector('.levels').addEventListener('click', () => {
-      g.scale = 1;
-      g.point.x = 0;
-      g.point.y = 0;
-      App.stopLocalTimer();
-      UI.applyTransform(false);
-      UI.displayLevels();
-      UI.resetTimer();
+    document.querySelector('.play-again').addEventListener('click', () => {
+      const game = document.querySelector('.game:not(.hidden)');
+      const id = parseInt(game.getAttribute('data-game-id'), 10);
+      App.resetVals();
+      App.getServerTime(true);
+      const checkStartTime = setInterval(() => {
+        if (g.startTime) {
+          UI.redisplayGame(id);
+          App.startLocalTimer();
+          clearInterval(checkStartTime);
+        }
+      }, 50);
+    });
+
+    document.querySelectorAll('.levels').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        g.scale = 1;
+        g.point.x = 0;
+        g.point.y = 0;
+        App.resetVals();
+        App.stopLocalTimer();
+        UI.applyTransform(false);
+        UI.displayLevels();
+        UI.resetTimer();
+        UI.hideSelector();
+      });
     });
 
     const games = document.querySelectorAll('.game');

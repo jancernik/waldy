@@ -199,13 +199,144 @@ body {
   position: fixed;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   top: 50%;
   left: 50%;
+  height: 100%;
+  width: 100%;
   transform: translate(-50%, -50%);
   .score {
     display: flex;
     font-size: 1.4rem;
+  }
+}
+
+.btns {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.levels,
+.play-again {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  cursor: pointer;
+  height: $bar-content-size;
+  border-radius: $bar-border-radius;
+  background: $bar-lighter-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: $bar-spacing;
+  box-shadow: $top-bar-shadow;
+  gap: 0.3rem;
+  span {
+    display: flex;
+    align-items: center;
+    font-size: 0.8 * $bar-font-size;
+    line-height: 0.8 * $bar-font-size;
+    padding-top: 0.1 * $bar-font-size;
+  }
+  &:hover {
+    background: $hover-color;
+    .arrow {
+      transform: scale(1.2);
+    }
+    .round-arrow {
+      transform: rotate(140deg) scale(1.1);
+      &::after {
+        background: $hover-color;
+      }
+    }
+  }
+}
+
+.play-again {
+  gap: 0.6rem;
+
+}
+
+.round-arrow {
+  height: math.div($bar-icon-size, 1.1);
+  width: math.div($bar-icon-size, 1.1);
+  position: relative;
+  border-radius: 50%;
+  border: 2px $bar-font-color solid;
+  transition: 0.1s ease-in-out;
+  z-index: 40;
+  overflow: visible;
+  transform: rotate(100deg);
+  &::after {
+    content: '';
+    top: 50%;
+    left: 0;
+    transform: translate(-2px, -50%) perspective(8px) rotateY(45deg);
+    position: absolute;
+    background: $bar-lighter-color;
+    // background: red;
+    height: math.div($bar-icon-size, 2.5);
+    width: math.div($bar-icon-size, 2);
+    border-radius: 3px;
+  }
+  .tip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: math.div($bar-icon-size, 1.5);
+    width: math.div($bar-icon-size, 1.5);
+    transform: translate(-35%, 40%) rotate(28deg);
+    z-index: 50;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      background-color: $bar-font-color;
+    }
+    &::before {
+      top: calc(50% + 1px);
+      transform-origin: top left;
+      transform: translate(-50%, -50%) rotate(-50deg);
+    }
+    &::after {
+      top: calc(50% - 1px);
+      transform-origin: bottom left;
+      transform: translate(-50%, -50%) rotate(50deg);
+    }
+  }
+}
+
+.arrow {
+  height: $bar-icon-size;
+  width: $bar-icon-size;
+  position: relative;
+  transition: 0.1s ease-in-out;
+  transform: translateX(10%);
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    background-color: $bar-font-color;
+  }
+  &::before {
+    top: calc(50% + 1px);
+    transform-origin: top left;
+    transform: translate(-50%, -50%) rotate(-50deg);
+  }
+  &::after {
+    top: calc(50% - 1px);
+    transform-origin: bottom left;
+    transform: translate(-50%, -50%) rotate(50deg);
   }
 }
 
@@ -220,10 +351,10 @@ body {
   overflow: visible;
   background: $card-bg-hover-color;
   height: $bar-content-size + $bar-spacing * 2;
-  transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(0px);
   > div {
-    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: 0.4s ease-in-out;
     opacity: 1;
   }
   &.end {
@@ -350,52 +481,6 @@ body {
       font-size: $bar-font-size;
       width: $bar-content-size * 2 + $bar-spacing;
       font-weight: 500;
-    }
-    .arrow {
-      height: $bar-icon-size;
-      width: $bar-icon-size;
-      position: relative;
-      transition: 0.1s ease-in-out;
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        width: 50%;
-        height: 2px;
-        top: 50%;
-        left: 50%;
-        background-color: $bar-font-color;
-      }
-      &::before {
-        top: calc(50% + 1px);
-        transform-origin: top left;
-        transform: translate(-50%, -50%) rotate(-50deg);
-      }
-      &::after {
-        top: calc(50% - 1px);
-        transform-origin: bottom left;
-        transform: translate(-50%, -50%) rotate(50deg);
-      }
-    }
-    .levels {
-      display: flex;
-      justify-content: center;
-      font-weight: 500;
-      cursor: pointer;
-      span {
-        display: flex;
-        align-items: center;
-        font-size: 0.8 * $bar-font-size;
-        line-height: 0.8 * $bar-font-size;
-        height: 0.8 * $bar-font-size;
-        padding-top: 0.1 * $bar-font-size;
-      }
-      &:hover {
-        background: $hover-color;
-        .arrow {
-          transform: scale(1.2);
-        }
-      }
     }
   }
 }
