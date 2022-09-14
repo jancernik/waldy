@@ -44,12 +44,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    top:0;
+    top: 0;
     left: 0;
     width: 100%;
     height: $header-height;
     background: $sec-bg-color;
-    padding-inline: $header-padding*2;
+    padding-inline: $header-padding * 2;
   }
   .logo {
     display: flex;
@@ -109,9 +109,9 @@ body {
     }
     &:hover {
       color: #000;
-transform: scale(0.90);
+      transform: scale(0.9);
     }
-  } 
+  }
   .cards-container {
     background-color: $sec-bg-color;
     border-radius: $bar-border-radius;
@@ -144,13 +144,14 @@ transform: scale(0.90);
         justify-content: space-between;
         padding-inline: 1rem;
         font-size: $card-font-size;
-        color: $card-font-sec-color;
+        color: $card-font-pri-color;
         font-weight: 500;
         justify-content: center;
         height: 100%;
         align-items: center;
         transition: 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         span:first-child {
+          color: $card-font-sec-color;
           position: absolute;
           left: 0;
           transform: translateX(-40%);
