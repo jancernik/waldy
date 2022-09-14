@@ -163,7 +163,7 @@ body {
           color: $card-font-pri-color;
         }
       }
-      &:hover {
+      &:hover, &.loading {
         img {
           transform: scale(1);
           filter: blur(0px);
@@ -175,6 +175,33 @@ body {
         span:first-child {
           opacity: 0;
         }
+      }
+    }
+
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 7rem;
+      height: 0.5rem;
+      animation: flip 1s infinite;
+      background: #dc241f;
+      box-shadow: 0 0 0.8rem 0.2rem rgba($color: #dc241f, $alpha: 0.6);
+      z-index: 100;
+    }
+
+    @keyframes flip {
+      0% {
+        transform: translate(-50%, -50%) rotate(0);
+      }
+
+      // 50% {
+      //   transform: translate(-50%, -50%) rotateY(180deg);
+      // }
+
+      100% {
+        transform: translate(-50%, -50%) rotateY(180deg);
+        // transform: translate(-50%, -50%) rotateY(180deg) rotateX(180deg);
       }
     }
   }

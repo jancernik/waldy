@@ -8,6 +8,7 @@ export default class BindEvent {
       el.addEventListener('click', (e) => {
         if (!g.transitionEnded) return;
         const id = e.currentTarget.getAttribute('data-game-id');
+        UI.displayLoader(id);
         UI.prepareGame(id);
         App.getServerTime(true);
         const checkStartTime = setInterval(() => {

@@ -21,9 +21,14 @@ export default class UI {
   static displayGame() {
     const games = document.querySelector('.games');
     games.style.transform = 'translateY(100%)';
-    // setTimeout(() => {
-    //   games.classList.add('hidden');
-    // }, 1000);
+    setTimeout(() => {
+      document.querySelectorAll('.loader').forEach((el) => {
+        el.classList.add('hidden');
+      });
+      document.querySelectorAll('.game-card').forEach((el) => {
+        el.classList.remove('loading');
+      });
+    }, 800);
   }
 
   static redisplayGame(id) {
@@ -47,6 +52,13 @@ export default class UI {
     }
     document.querySelector('.end-card').classList.add('hidden');
     document.querySelector('.top-bar').classList.remove('end');
+  }
+
+  static displayLoader(id) {
+    const gameCard = document.querySelector(`.game-card[data-game-id="${id}"]`);
+    const loader = document.querySelector(`.loader[data-game-id="${id}"]`);
+    gameCard.classList.add('loading');
+    loader.classList.remove('hidden');
   }
 
   static displayLevels() {
