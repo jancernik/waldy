@@ -62,8 +62,10 @@ export default class UI {
   }
 
   static displayLevels() {
-    // document.querySelector('.games').classList.remove('hidden');
     g.transitionEnded = false;
+    document.querySelectorAll('.game-card').forEach((el) => {
+      el.classList.add('in-transition');
+    });
     document.querySelector('.games').style.transform = 'translateY(0)';
     setTimeout(() => {
       document.querySelector('.top-bar').classList.add('hidden');
@@ -79,6 +81,9 @@ export default class UI {
       });
       document.querySelectorAll('.game').forEach((el) => {
         el.classList.add('hidden');
+      });
+      document.querySelectorAll('.game-card').forEach((el) => {
+        el.classList.remove('in-transition');
       });
       g.transitionEnded = true;
     }, 800);

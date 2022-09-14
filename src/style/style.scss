@@ -119,7 +119,6 @@ body {
     gap: 2rem;
     padding: 2rem;
     .game-card {
-      cursor: pointer;
       position: relative;
       overflow: hidden;
       border-radius: $bar-border-radius;
@@ -163,17 +162,20 @@ body {
           color: $card-font-pri-color;
         }
       }
-      &:hover, &.loading {
-        img {
-          transform: scale(1);
-          filter: blur(0px);
-        }
-        .text {
-          background: $card-bg-hover-color;
-          height: $card-font-size + $card-inline-padding * 2;
-        }
-        span:first-child {
-          opacity: 0;
+      &:not(.in-transition) {
+      cursor: pointer;
+        &:hover, &.loading {
+          img {
+            transform: scale(1);
+            filter: blur(0px);
+          }
+          .text {
+            background: $card-bg-hover-color;
+            height: $card-font-size + $card-inline-padding * 2;
+          }
+          span:first-child {
+            opacity: 0;
+          }
         }
       }
     }
