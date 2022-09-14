@@ -163,8 +163,9 @@ body {
         }
       }
       &:not(.in-transition) {
-      cursor: pointer;
-        &:hover, &.loading {
+        cursor: pointer;
+        &:hover,
+        &.loading {
           img {
             transform: scale(1);
             filter: blur(0px);
@@ -590,6 +591,7 @@ body {
 @media (max-width: 1050px) {
   .games {
     padding: 1rem;
+    padding-top: $header-height + 1rem;
     gap: 1rem;
     .cards-container {
       flex-direction: column;
